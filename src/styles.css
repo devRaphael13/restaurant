@@ -109,7 +109,8 @@ nav {
     padding-right: 8rem;
 }
 
-.about__header1, .about__header2 {
+.about__header1,
+.about__header2 {
     font-size: 2rem;
     font-weight: 900;
     display: inline;
@@ -129,5 +130,55 @@ nav {
     color: var(--yellow);
     border-radius: 1.5rem;
     padding: 1rem 2rem;
+    font-weight: bold;
 }
 
+.menu {
+    padding: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu__heading,
+.menu__headingpart {
+    font-size: 2rem;
+    display: inline;
+}
+
+.menu__headingpart {
+    color: var(--yellow);
+}
+
+.menu__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.menu__div1 {
+    border-radius: 1rem;
+    height: 350px;
+    margin-bottom: 4rem;
+}
+
+.menu__image {
+    width: 100%;
+    border-radius: 1rem 1rem 0 0;
+    height: 350px;
+}
+
+.menu__flexdiv {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+}
+
+.menu__ctabtn {
+    padding: 0.5rem 8rem;
+    background: var(--yellow);
+    border-radius: 0.25rem;
+    font-weight: bold;
+    margin-top: 0.75rem;
+}

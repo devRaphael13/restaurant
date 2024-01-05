@@ -1,13 +1,17 @@
 import "./styles.css";
 import heroPic from "./food.png";
 import aboutPic from "./food2.png";
+import foodMenu1 from "./food_menu_1.jpeg";
+import foodMenu2 from "./food_menu_2.jpeg";
+import foodMenu3 from "./food_menu_3.jpeg";
+
 const rootElem = document.getElementById("root");
-const container = document.createElement("main")
-rootElem.append(navBar(), container)
+const container = document.createElement("main");
+rootElem.append(navBar(), container);
 
 function main(func) {
-    if (container.firstChild) container.removeChild(container.firstChild)
-    container.append(func())
+    if (container.firstChild) container.removeChild(container.firstChild);
+    container.append(func());
 }
 
 const display = {
@@ -16,7 +20,7 @@ const display = {
         const homeContainer = document.createElement("div");
         const leftContainer = document.createElement("div");
         const rightContainer = document.createElement("div");
- 
+
         // Left container
         const small = document.createElement("small");
         small.textContent = "Restaurant";
@@ -55,7 +59,57 @@ const display = {
     },
 
     menu() {
-        console.log("menu");
+        const menu = document.createElement("section");
+        menu.classList.add("menu");
+
+        const heading = document.createElement("h2");
+        heading.classList.add("menu__heading");
+        heading.textContent = "Most Popular "
+
+        const heading_part = document.createElement("h2");
+        heading_part.classList.add("menu__headingpart");
+        heading_part.textContent = "Food"
+        
+        const header_div = document.createElement("div")
+        header_div.append(heading, heading_part)
+
+        const container = document.createElement("div");
+        container.classList.add("menu__container");
+
+        for (let img of [["Breakfast", foodMenu1], ["Lunch", foodMenu2], ["Dinner", foodMenu3]]) {
+            const div1 = document.createElement("div");
+            div1.classList.add("menu__div1");
+
+            const image = document.createElement("img");
+            image.src = img[1]
+            image.classList.add("menu__image");
+
+            const div2 = document.createElement("div");
+            div2.classList.add("menu__div2");
+
+            const flexDiv = document.createElement("div");
+            flexDiv.classList.add("menu__flexdiv");
+
+            const name = document.createElement("h3");
+            name.textContent = img[0]
+
+            const price = document.createElement("h3");
+            price.textContent = "$199"
+
+            const ctaBtn = document.createElement("button");
+            ctaBtn.classList.add("menu__ctabtn");
+            ctaBtn.textContent = "Add to Cart"
+
+            // Assembly
+            flexDiv.append(name, price);
+            div2.append(flexDiv, ctaBtn);
+            div1.append(image, div2);
+
+            // Outer Assembly
+            container.append(div1);
+        }
+        menu.append(header_div, container);
+        return menu;
     },
     about() {
         const about = document.createElement("section");
