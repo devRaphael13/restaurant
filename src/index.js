@@ -1,10 +1,13 @@
 import "./styles.css";
 import heroPic from "./food.png";
 import aboutPic from "./food2.png";
+const rootElem = document.getElementById("root");
+const container = document.createElement("main")
+rootElem.append(navBar(), container)
 
-function main() {
-    const rootElem = document.getElementById("root");
-    rootElem.append(navBar(), display["about"]());
+function main(func) {
+    if (container.firstChild) container.removeChild(container.firstChild)
+    container.append(func())
 }
 
 const display = {
@@ -13,7 +16,7 @@ const display = {
         const homeContainer = document.createElement("div");
         const leftContainer = document.createElement("div");
         const rightContainer = document.createElement("div");
-
+ 
         // Left container
         const small = document.createElement("small");
         small.textContent = "Restaurant";
@@ -62,37 +65,37 @@ const display = {
         // Left Container
         const svgContainer = document.createElement("div");
         svgContainer.innerHTML = `<svg id="visual" viewBox="0 0 900 600" width="900" height="600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g transform="translate(426.8790573081478 332.63818847159183)"><path d="M133 -141.5C174.5 -91.5 211.7 -45.7 220.9 9.2C230.1 64.1 211.2 128.2 169.7 161.2C128.2 194.2 64.1 196.1 1.3 194.8C-61.5 193.5 -123 189 -148 156C-173 123 -161.5 61.5 -165.6 -4.1C-169.8 -69.8 -189.5 -139.5 -164.5 -189.5C-139.5 -239.5 -69.8 -269.8 -12 -257.7C45.7 -245.7 91.5 -191.5 133 -141.5" fill="#FFBF00"></path></g></svg>`;
-        svgContainer.classList.add("about__svg")
+        svgContainer.classList.add("about__svg");
 
         const aboutImg = document.createElement("img");
         aboutImg.src = aboutPic;
-        aboutImg.classList.add("about__img")
+        aboutImg.classList.add("about__img");
 
         leftContainer.append(svgContainer, aboutImg);
-        leftContainer.classList.add("about__left")
+        leftContainer.classList.add("about__left");
 
         // Right Container
         const about1 = document.createElement("h2");
         about1.textContent = "About";
-        about1.classList.add("about__header1")
+        about1.classList.add("about__header1");
 
         const about2 = document.createElement("h2");
         about2.textContent = "Us";
-        about2.classList.add("about__header2")
-        
+        about2.classList.add("about__header2");
+
         const aboutPara = document.createElement("p");
         aboutPara.textContent = `Keeping healthy food readily available. When you get hungry, you're more likely to eat the first thing you see on the counter.Keeping healthy food readily available. When you get hungry, you're more likely to eat the first thing you see on the counter.Keeping healthy food readily available. When you get hungry, you're more likely to eat the first thing you see on the counter.`;
         aboutPara.classList.add("about__para");
 
         const aboutBtn = document.createElement("button");
-        aboutBtn.textContent = "View more"
-        aboutBtn.classList.add("about__btn")
+        aboutBtn.textContent = "View more";
+        aboutBtn.classList.add("about__btn");
 
-        rightContainer.append(about1, about2, aboutPara, aboutBtn)
-        rightContainer.classList.add("about__right")
+        rightContainer.append(about1, about2, aboutPara, aboutBtn);
+        rightContainer.classList.add("about__right");
 
         about.append(leftContainer, rightContainer);
-        about.classList.add("about")
+        about.classList.add("about");
         return about;
     },
 };
@@ -116,6 +119,7 @@ function navBar() {
                 child.classList.remove("active");
             }
             elem.classList.toggle("active");
+            main(display[link]);
         });
         div.appendChild(elem);
     }
@@ -125,4 +129,4 @@ function navBar() {
     return nav;
 }
 
-main();
+main(display["home"]);
